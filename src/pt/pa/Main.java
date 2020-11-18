@@ -1,7 +1,11 @@
 package pt.pa;
 
 import pt.pa.model.CourseGrades;
+import pt.pa.model.HighestGrade;
+import pt.pa.model.LowestGrade;
 import pt.pa.model.StudentGrade;
+
+import java.sql.SQLOutput;
 
 public class Main {
 
@@ -9,8 +13,15 @@ public class Main {
 
         CourseGrades grades = generate_example();
 
-        System.out.println(grades);
+        System.out.println(grades.sortGrades());
 
+        System.out.println("    Média: " + grades.computeStatistic());
+
+        grades.changeStatistic(new LowestGrade());
+        System.out.println("    Nota mais baixa: " + grades.computeStatistic());
+
+        grades.changeStatistic(new HighestGrade());
+        System.out.println("    Nota mais alta: " + grades.computeStatistic());
     }
 
     private static CourseGrades generate_example() {
